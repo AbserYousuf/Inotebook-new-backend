@@ -26,6 +26,6 @@ app.use('/api/notes', notes)
 const port = process.env.PORT
 app.listen(port, () => {
     console.log(`The backend is Listening on http://localhost:${port}`)
-    console.log(`Frontend Is Listening on ${proccess.env.CLIENT_PORT}`)
+    console.log(`Frontend Is Listening on ${process.env.CLIENT_PORT}`)
 
 })
