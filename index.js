@@ -19,6 +19,7 @@ app.use(cors({
 })
 )
 app.use(express.json())
+app.set('trust proxy', 1);
 app.use('/api/auth', auth)
 app.use('/api/notes', notes)
 
