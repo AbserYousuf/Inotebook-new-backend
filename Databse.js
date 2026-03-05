@@ -1,5 +1,5 @@
 const mongoose = require('mongoose')
-const url = 'mongodb://localhost:27017/Notebook'
+const url = 'mongodb+srv://inotebook:<Inotebook23>@inotebook.idrdgre.mongodb.net/?appName=inotebook'
 const Connect = async () => {
     try {
         await mongoose.connect(url)
