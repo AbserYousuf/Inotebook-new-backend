@@ -408,7 +408,7 @@ router.put('/updatepassword', [
 router.get('/getuser', tokencheck, async (req, res) => {
     const id = req.userId
     try {
-        const user = await User.findById(id).select('-Date -Password -createdAt -updatedAt -resetOTP -resetOTPAttempts -resetOTPExpire');
+        const user = await User.findById(id).select('-Date -password -createdAt -updatedAt -resetOTP -resetOTPAttempts -resetOTPExpire');
         if (!user) {
             return res.status(404).json({
                 success: false,
