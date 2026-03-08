@@ -1,16 +1,16 @@
 const mongoose = require('mongoose')
 const { Schema } = mongoose;
 const UserSchema = new Schema({
-    Name: {
+    name: {
         type: String,
         required: true
     },
-    UserName: {
+    userName: {
         type: String,
         required: true,
         unique: true
     },
-    Email: {
+    email: {
         type: String,
         required: true,
         unique: true
@@ -20,7 +20,7 @@ const UserSchema = new Schema({
     resetOTPAttempts: { type: Number, default: 0 },
     resetToken: { type: String },
     resetTokenExpire: { type: Date },
-    Password: {
+    password: {
         type: String,
         required: true,
     },
