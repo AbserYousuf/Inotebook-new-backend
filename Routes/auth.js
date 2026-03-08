@@ -258,7 +258,7 @@ router.post('/forgotpassword', [
       <h2 style="margin-top:0; color:#2d3748;">Password Reset Code</h2>
       
       <p class="info">
-        Hi ${user.Name || 'there'},<br>
+        Hi ${user.name || 'there'},<br>
         You requested to reset your password. Use the code below to continue:
       </p>
 
@@ -284,7 +284,7 @@ router.post('/forgotpassword', [
 
                 const data = {
 
-                    email: user.Email,
+                    email: user.email,
                     purpose: "password reset"
 
                 }
@@ -392,7 +392,7 @@ router.put('/updatepassword', [
             })
         }
         const newpasscode = await bcrypt.hash(password, 12)
-        user.Password = newpasscode
+        user.password = newpasscode
         user.resetToken = undefined
         user.resetTokenExpire = undefined
         await user.save()
