@@ -37,11 +37,11 @@ router.post('/create',
         }
         try {
             const { name, password, email, username } = req.body
-            let user = await User.findOne({ Email: email })
+            let user = await User.findOne({ email: email })
             if (user) {
                 return res.status(401).json({ success: false, msg: "Following Email already exists" })
             }
-            user = await User.findOne({ UserName: username })
+            user = await User.findOne({ username: username })
             if (user) {
                 return res.status(401).json({ success: false, msg: "Please Choose a Different Username" })
             }
@@ -49,7 +49,7 @@ router.post('/create',
             const newPassword = await bcrypt.hash(password, salt)
             const data = await User.create({
                 name: name,
-                userName: username,
+                username: username,
                 email: email,
                 password: newPassword,
 
