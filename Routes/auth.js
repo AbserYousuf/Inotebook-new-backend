@@ -48,10 +48,10 @@ router.post('/create',
             const salt = await bcrypt.genSalt(12)
             const newPassword = await bcrypt.hash(password, salt)
             const data = await User.create({
-                Name: name,
-                UserName: username,
-                Email: email,
-                Password: newPassword,
+                name: name,
+                userName: username,
+                email: email,
+                password: newPassword,
 
             })
             return res.status(200).json({ success: true, data })
@@ -102,13 +102,13 @@ router.post('/login', Loginlimiter, [
     let user;
     try {
         if (email) {
-            user = await User.findOne({ Email: email })
+            user = await User.findOne({ email: email })
             if (!user) {
                 return res.status(404).json({ success: false, error: " Enter The Correct Credentials" })
             }
         }
         if (username) {
-            user = await User.findOne({ UserName: username })
+            user = await User.findOne({ userName: username })
             if (!user) {
                 return res.status(404).json({ success: false, error: " Enter The Correct Credentials" })
             }
@@ -139,7 +139,7 @@ router.post('/forgotpassword', [
     if (!errors.isEmpty()) {
         return res.status(400).json({ success: false, error: errors.array().map(err => err.msg) })
     }
-    let user = await User.findOne({ Email: email })
+    let user = await User.findOne({ email: email })
     if (!user) {
         return res.status(200).json({ success: false, error: "If the account exists , an otp has been sent" })
     }
@@ -321,7 +321,7 @@ router.post('/otpVerify', Emtoken, [
     const email = req.userEmail
     const { otp } = req.body
     try {
-        const user = await User.findOne({ Email: email })
+        const user = await User.findOne({ email: email })
         if (!user || !user.resetOTP || !user.resetOTPExpire) {
             return res.status(400).json({
                 success: false,
