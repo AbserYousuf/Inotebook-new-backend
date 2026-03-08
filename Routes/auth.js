@@ -108,7 +108,7 @@ router.post('/login', Loginlimiter, [
             }
         }
         if (username) {
-            user = await User.findOne({ userName: username })
+            user = await User.findOne({ username: username })
             if (!user) {
                 return res.status(404).json({ success: false, error: " Enter The Correct Credentials" })
             }
@@ -116,7 +116,7 @@ router.post('/login', Loginlimiter, [
         if (!user) {
             return res.status(404).json({ success: false, error: " Enter The Correct Credentials" })
         }
-        const compare = await bcrypt.compare(password, user.Password)
+        const compare = await bcrypt.compare(password, user.password)
         if (!compare) {
             return res.status(401).json({ success: false, error: " Enter The Correct Credentials" })
         }
@@ -158,10 +158,10 @@ router.post('/forgotpassword', [
         if (email) {
             try {
                 await sgMail.send({
-                    to: user.Email,  // real user email
+                    to: user.email,  // real user email
                     from: 'abseryousuf50@gmail.com',  // must match your verified sender!
                     subject: "OTP Verification",
-                    text: `Hi ${user.Name || 'User'},\n\nUse this code to reset your password: ${backotp}\n\nThis code expires in 10 minutes.\n\nIf you didn't request this, ignore it.`,
+                    text: `Hi ${user.name || 'user'},\n\nUse this code to reset your password: ${backotp}\n\nThis code expires in 10 minutes.\n\nIf you didn't request this, ignore it.`,
                     html: `
 <!DOCTYPE html>
 <html lang="en">
